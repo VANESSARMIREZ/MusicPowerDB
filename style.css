@@ -679,7 +679,7 @@ footer > * {
 
 /* Botón de volver fijo arriba a la izquierda */
 .volver-fijo {
-  position: absolute;
+ position: fixed;
   top: 6rem;
   left: 1rem;
   z-index: 1000;
@@ -694,6 +694,7 @@ footer > * {
   gap: 5px;
   transition: background 0.2s ease;
   font-weight: bold;
+  margin-top: 0.5rem;
 }
 
 .volver-fijo:hover {
@@ -1241,6 +1242,16 @@ margin-top: 0.5rem;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+}
+
+.titulo-lista {
+  font-size: 2rem;
+  color: #ff008c; /* rosa vibrante */
+  margin-bottom: 1.5rem;
+  margin-top: -1rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 2px #00000088;
 }
 
 
