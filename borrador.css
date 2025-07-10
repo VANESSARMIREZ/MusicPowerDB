@@ -1,0 +1,24 @@
+/* Slider recomendaciones */
+.slider { position: relative; overflow: hidden; }
+.slide { display: none; padding:20px; }
+.slide.active { display: block; }
+.nav-flechas { position:absolute; top:50%; width:100%; display:flex; justify-content: space-between; }
+.nav-flechas button { background:#fff; border:none; opacity:.7; padding:8px; border-radius:50%; cursor:pointer; }
+.recom-sent { font-style:italic; margin-bottom:10px; }
+
+/* Acciones en top canciones */
+.acciones-mini { display:flex; align-items:center; gap:8px; }
+.menu-hamb { cursor:pointer; padding:4px; background:rgba(255,255,255,0.2); border-radius:4px; }
+.submenu { display:none; position:absolute; background:rgba(0,0,0,0.8); padding:5px; border-radius:6px; text-align: center;}
+.submenu a { display:block; color:#fff; padding:4px 8px; text-decoration:none; }
+.menu-hamb:hover + .submenu, .submenu:hover { display:block; }
+
+.cancion { position:relative; cursor:pointer; }
+/* Ajustar acciones dentro info */
+.botonyoutube { margin-top:10px; }
+
+/* Asegúrate de que el botón agregar esté separado */
+.boton-agregar { margin:20px 0; }
+
+/* Ajusta alturas del iframe en slider si se necesita */
+.video-embed iframe { max-height:360px; }

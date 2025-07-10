@@ -1,0 +1,112 @@
+.lista-canciones {
+  display: flex;
+  flex-direction: column;
+  max-width: 150%;
+  height: 100vh; /* <- Altura de toda la ventana */
+  margin: 20px auto;
+  padding: 0 3rem;
+  box-sizing: border-box;
+  overflow-y: auto; /* Para poder hacer scroll si hay muchas canciones */
+   width: 100vw; /* Forzar ancho total de la pantalla */
+  position: relative;
+  left: calc(-1 * (100vw - 100%) / 2); /* Empuja hacia la izquierda para ocupar todo */
+}
+
+/* Fila individual */
+.fila-cancion {
+  display: grid;
+  grid-template-columns: 40px 50px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background-color: #1e1e1e;
+  /* border-bottom: 1px solid #444; */  /* Comentada para quitar la barra */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  max-height: 65px;
+  overflow: hidden;
+  width: 100%;
+
+  border-bottom: 1px solid #444;
+  
+}
+
+/* Hover: más opaco */
+.fila-cancion:hover {
+  background-color: rgba(255, 0, 140, 0.1);
+  box-shadow: 0 0 10px rgba(255, 0, 140, 0.4);
+
+  color: white;
+}
+
+/* Ajustes internos */
+.fila-cancion .chk-select {
+  position: relative;
+  left: 0;
+  top: auto;
+  transform: none;
+  z-index: 1;
+  display: none; /* Se muestra en modo edición */
+}
+
+.fila-cancion .numero {
+  font-weight: bold;
+  color: #ffd700;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.fila-cancion .miniatura img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.fila-cancion .datos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #eee;
+  font-size: 0.9rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.fila-cancion .acciones-mini {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+
+.fila-cancion .boton-detalles,
+.fila-cancion .botonyoutube {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+}
+
+/* Estilo base botones mini */
+.fila-cancion .botonyoutube {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+  border-left: 4px solid transparent;
+}
+
+
+/* Hover: similar al submenu */
+.fila-cancion .botonyoutube:hover {
+  transform: scale(1.05);
+}
+
+.lista-canciones .fila-cancion .boton-detalles:hover {
+  background-color: transparent;  
+  color: #ffffff !important;
+}
