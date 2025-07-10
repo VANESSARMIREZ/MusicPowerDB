@@ -40,26 +40,32 @@ $canciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <a href="index.php"><img src="logo.png" class="logo" alt="Logo"/></a>
 
   <div class="acciones-detalle">
-    <button id="btn-editar"><i class="fas fa-edit"></i> Editar</button>
-    <button id="btn-eliminar"><i class="fas fa-trash"></i> Eliminar</button>
-    <button id="btn-cancelar" style="display:none;">Cancelar</button>
+  <button id="btn-editar"><i class="fas fa-edit"></i> Editar</button>
+  <a href="agregartop.php" class="boton-agregar">
+    <i class="fas fa-plus"></i> Agregar
+  </a>
+  <button id="btn-eliminar"><i class="fas fa-trash"></i> Eliminar</button>
+  <button id="btn-cancelar" style="display:none;">Cancelar</button>
 
-    <!-- Controles edición -->
-    <button type="button" class="confirmar accion-contextual" id="confirmar-editar" style="display: none;">
-      Editar canción seleccionada
-    </button>
+  <!-- Controles edición -->
+  <button type="button" class="confirmar accion-contextual" id="confirmar-editar" style="display: none;">
+    Editar canción seleccionada
+  </button>
 
-    <!-- Controles eliminación -->
-    <button type="button" class="confirmar eliminar accion-contextual" id="confirmar-eliminar" style="display: none;">
-      Eliminar canciones seleccionadas
-    </button>
-  </div>
+  <!-- Controles eliminación -->
+  <button type="button" class="confirmar eliminar accion-contextual" id="confirmar-eliminar" style="display: none;">
+    Eliminar canciones seleccionadas
+  </button>
+</div>
+
 </div>
 
 
   <a href="index.php" class="volver-fijo"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
 
 <main>
+   <h1 class="titulo-lista">Lista Completa de Canciones </h1>
+  
   <form id="form-acciones" method="POST">
     <div class="lista-canciones lista-completa">
 
