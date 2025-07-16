@@ -39,6 +39,11 @@ $canciones = $stmtPag->fetchAll(PDO::FETCH_ASSOC);
   <div class="header">
     <a href="."><img src="logo.png" class="logo" alt="Logo"/></a>
 <nav class="menu">
+
+<a href="listacompleta.php" class="btn-buscar-canciones" style="font-weight:bold; color:#ff008c; margin-left: 15px;">
+  <i class="fas fa-search"></i> Buscar canciones
+</a>
+
   <a href="#recomendaciones">Inicio</a>
 
   <div class="menu-item">
@@ -47,6 +52,7 @@ $canciones = $stmtPag->fetchAll(PDO::FETCH_ASSOC);
       <a href="listacompleta.php">Lista completa</a>
     </div>
   </div>
+
 
   <a href="#contacto">Contacto</a>
   <span class="separador">|</span>
