@@ -15,9 +15,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ids_eliminar'])) {
 
 // No procesamos edición en esta página (solo redirigir con id)
 
-// Obtener canciones
-$stmt = $pdo->query("SELECT * FROM canciones WHERE tipo = 'top' ORDER BY artista, titulo");
+// Obtener canciones con o sin búsqueda
+$busqueda = isset($_GET['buscar']) ? trim($_GET['buscar']) : '';
+if ($busqueda !== '') {
+   $stmt = $pdo->prepare("SELECT * FROM canciones WHERE LOWER(titulo) LIKE LOWER(?) OR LOWER(artista) LIKE LOWER(?) ORDER BY artista, titulo");
+
+    $like = "%$busqueda%";
+    $stmt->execute([$like, $like]);
+} else {
+    $stmt = $pdo->query("SELECT * FROM canciones ORDER BY artista, titulo");
+}
 $canciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -29,6 +38,27 @@ $canciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.querySelector('input[name="buscar"]');
+  const form = input.closest('form');
+
+  input.addEventListener('input', () => {
+    const query = input.value.trim();
+    const url = `listacompleta.php?buscar=${encodeURIComponent(query)}`;
+    fetch(url)
+      .then(resp => resp.text())
+      .then(html => {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        const nuevaLista = tempDiv.querySelector('.lista-canciones');
+        document.querySelector('.lista-canciones').innerHTML = nuevaLista.innerHTML;
+      });
+  });
+});
+</script>
+
 
 </head>
 <body>
@@ -64,8 +94,16 @@ $canciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <a href="index.php" class="volver-fijo"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
 
 <main>
+
    <h1 class="titulo-lista">Lista Completa de Canciones </h1>
-  
+   
+  <form method="GET" style="margin-bottom: 20px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+  <input type="text" name="buscar" placeholder="Buscar por título o artista" value="<?= htmlspecialchars($busqueda) ?>" style="padding: 8px; border-radius: 8px; border: 1px solid #ccc; width: 250px;">
+  <button type="submit" style="background-color: #ff008c; color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer;">
+    <i class="fas fa-search"></i> Buscar
+  </button>
+</form>
+
   <form id="form-acciones" method="POST">
     <div class="lista-canciones lista-completa">
 
